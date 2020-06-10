@@ -8,7 +8,7 @@
       </el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <!-- 卡片试图区 -->
+    <!-- 卡片视图区 -->
     <el-card>
       <!-- 搜索与添加 -->
       <el-row :gutter="20">
@@ -118,7 +118,7 @@
       </span>
     </el-dialog>
     <!-- 分配角色对话框 -->
-    <el-dialog title="分配角色" :visible.sync="dialogVisible" width="50%">
+    <el-dialog title="分配角色" :visible.sync="dialogVisible" width="50%" @close="setRoleDialogClose">
       <div>
         <p>当前的用户:{{userInfo.username}}</p>
         <p>当前的角色:{{userInfo.role_name}}</p>
@@ -361,7 +361,12 @@ export default {
     }
     this.$message.success("分配角色成功!")
       this.dialogVisible = false
+      
+    },
+    //监听分配角色的对话框关闭时间
+    setRoleDialogClose(){
       this.selectdRoleId=''
+      this.userInfo={}
     }
   }
 };
